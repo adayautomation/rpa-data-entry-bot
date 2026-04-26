@@ -1,18 +1,18 @@
-# rpa-bot
+# rpa-data-entry-bot
 
-Automated data entry bot for the **Affinity** platform using Python RPA. Reads member records from Excel, parses address data with AI, and fills in web forms automatically using visual recognition — no API access to the target system required.
+Automated data entry bot for **web-based membership management platforms** using Python RPA. Reads member records from Excel, parses address data with AI, and fills in web forms automatically using visual recognition — no API access to the target system required.
 
 ---
 
 ## What It Does
 
 1. Reads member data from an Excel file (`sample_members.xlsx`)
-2. Navigates the Affinity platform UI using screenshot-based detection
+2. Navigates the platform UI using screenshot-based detection
 3. Fills in personal details, fiscal address, province, and municipality fields
 4. Handles dropdown menus with dynamic scroll-and-detect logic
 5. Confirms completion and moves on
 
-This was built to automate a repetitive manual data entry workflow, reducing processing time from ~8 minutes per record to under 60 seconds.
+Built to automate a repetitive manual data entry workflow, reducing processing time from ~8 minutes per record to under 60 seconds.
 
 ---
 
@@ -30,20 +30,17 @@ This was built to automate a repetitive manual data entry workflow, reducing pro
 ---
 
 ## Project Structure
-
-```
-rpa-affinity-bot/
+rpa-data-entry-bot/
 ├── scripts/
-│   ├── robot_affinity_completo.py   # Main bot — full form automation
-│   ├── leer_excel.py                # Excel reader with AI address parsing
-│   └── probar_movimiento.py         # Visual detection test script
+│   ├── main_bot.py                  # Main bot — full form automation
+│   ├── excel_reader.py              # Excel reader with AI address parsing
+│   └── detection_test.py           # Visual detection test script
 ├── assets/
 │   └── *.png                        # Reference screenshots for UI detection
 ├── sample_members.xlsx              # Input data (fictional sample included)
 ├── .env.example                     # Environment variable template
 ├── requirements.txt
 └── README.md
-```
 
 ---
 
@@ -51,8 +48,8 @@ rpa-affinity-bot/
 
 **1. Clone the repo**
 ```bash
-git clone https://github.com/adayautomation/rpa-affinity-bot.git
-cd rpa-affinity-bot
+git clone https://github.com/adayautomation/rpa-data-entry-bot.git
+cd rpa-data-entry-bot
 ```
 
 **2. Install dependencies**
@@ -68,7 +65,7 @@ cp .env.example .env
 
 **4. Add your UI screenshots**
 
-The bot uses image recognition to find buttons and fields on screen. Capture your own screenshots of the target interface and place them in the `assets/` folder:
+The bot uses image recognition to find buttons and fields on screen. Capture screenshots of the target interface and place them in the `assets/` folder:
 
 - `boton_anadir.png` — "Add" button
 - `selector_empresa.png` — Entity type selector
@@ -81,7 +78,7 @@ The bot uses image recognition to find buttons and fields on screen. Capture you
 
 **5. Run**
 ```bash
-python scripts/robot_affinity_completo.py
+python scripts/main_bot.py
 ```
 
 You have 5 seconds after launch to switch focus to the target application window.
@@ -91,10 +88,7 @@ You have 5 seconds after launch to switch focus to the target application window
 ## Environment Variables
 
 Create a `.env` file based on `.env.example`:
-
-```
 GROQ_API_KEY=your_key_here
-```
 
 Get a free Groq API key at [console.groq.com](https://console.groq.com)
 
