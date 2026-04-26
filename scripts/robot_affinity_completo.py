@@ -26,7 +26,7 @@ def escribir(imagen, texto):
         return False
 
 def buscar_municipio_con_scroll():
-    print("Buscando San Cristóbal de La Laguna...")
+    print("Buscando municipio...")
     try:
         campo = pyautogui.locateOnScreen('campo_municipio.png', confidence=0.7)
         if campo:
@@ -39,10 +39,10 @@ def buscar_municipio_con_scroll():
                 time.sleep(0.5)
 
                 for i in range(50):
-                    encontrado = pyautogui.locateOnScreen('opcion_laguna.png', confidence=0.8)
+                    encontrado = pyautogui.locateOnScreen('opcion_municipio.png', confidence=0.8)
                     if encontrado:
                         pyautogui.click(pyautogui.center(encontrado))
-                        print("¡Municipio seleccionado!")
+                        print("Municipio seleccionado.")
                         return True
                     pyautogui.scroll(-300)
                     time.sleep(0.2)
@@ -53,7 +53,7 @@ def buscar_municipio_con_scroll():
 
 # --- 3. CARGA DE DATOS ---
 df = pd.read_excel("sample_members.xlsx")
-elena = df.iloc[0]
+record = df.iloc[0]
 
 # --- 4. EJECUCIÓN ---
 print("Robot listo. Tienes 5 segundos...")
@@ -69,9 +69,9 @@ if pyautogui.locateOnScreen('boton_anadir.png', confidence=0.7):
     pyautogui.click(pyautogui.center(pyautogui.locateOnScreen('opcion_fisica.png', confidence=0.7)))
     time.sleep(1)
 
-    escribir('casilla_nif.png', elena['NIF / CIF'])
-    escribir('casilla_nombre.png', elena['Nombre'])
-    escribir('casilla_apellido.png', elena['Apellidos'])
+    escribir('casilla_nif.png', record['NIF / CIF'])
+    escribir('casilla_nombre.png', record['Nombre'])
+    escribir('casilla_apellido.png', record['Apellidos'])
 
     # FASE 2: DOMICILIO FISCAL
     pestana = pyautogui.locateOnScreen('pestana_domicilio.png', confidence=0.7)
@@ -79,12 +79,12 @@ if pyautogui.locateOnScreen('boton_anadir.png', confidence=0.7):
         pyautogui.click(pyautogui.center(pestana))
         time.sleep(1)
 
-        escribir('casilla_calle.png', elena['Dirección Completa'])
-        escribir('casilla_cp.png', elena['CP'])
+        escribir('casilla_calle.png', record['Dirección Completa'])
+        escribir('casilla_cp.png', record['CP'])
 
         pyautogui.click(pyautogui.center(pyautogui.locateOnScreen('campo_provincia.png', confidence=0.7)))
         time.sleep(0.8)
-        pyautogui.click(pyautogui.center(pyautogui.locateOnScreen('opcion_tenerife.png', confidence=0.7)))
+        pyautogui.click(pyautogui.center(pyautogui.locateOnScreen('opcion_provincia.png', confidence=0.7)))
         time.sleep(1)
 
         buscar_municipio_con_scroll()
