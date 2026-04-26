@@ -1,4 +1,4 @@
-# rpa-affinity-bot
+# rpa-bot
 
 Automated data entry bot for the **Affinity** platform using Python RPA. Reads member records from Excel, parses address data with AI, and fills in web forms automatically using visual recognition — no API access to the target system required.
 
